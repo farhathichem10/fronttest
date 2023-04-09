@@ -1,0 +1,65 @@
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users" (click)="action(user.id)">
+        <th scope="row">1</th>
+        <td>{{user.email}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.password}}</td>
+      </tr></tbody></table>
+      <form [formGroup]="formuser" (ngSubmit)="saveuser()">
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">datDebut</label>
+          <input type="text" formControlName="datedeb" class="form-control" id="datDebut" (change)="getdata($event)" aria-describedby="emailHelp">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">datFin</label>
+          <input formControlName="datefin" type="text" (change)="getdata2($event)" class="form-control" id="datFin">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input formControlName="email" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">username</label>
+          <input formControlName="username" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">password</label>
+          <input  formControlName="password" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+
+      <form [formGroup]="myForm" (ngSubmit)="saveuser2()">
+        <div formArrayName="inputList">
+          <div *ngFor="let input of inputList.controls; let i=index">
+            <div [formGroupName]="i">
+              <input formControlName="datedeb" type="text" placeholder="Prénom">
+              <input formControlName="datefin" type="text" placeholder="Nom de famille">
+              <input formControlName="username" type="text" placeholder="Nom de famille">
+
+              <input formControlName="email" type="text" placeholder="Nom de famille">
+
+              <input formControlName="password" type="text" placeholder="Nom de famille">
+
+            </div>
+          </div>
+        </div>
+        <button type="button" (click)="addInput()">Ajouter</button>
+        <button type="submit">Envoyer</button>
+      </form>
